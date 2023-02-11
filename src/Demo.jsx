@@ -67,12 +67,11 @@ export const Demo = () => {
   const [openBoxes, setOpenBoxes] = useState({});
 
   const handleTextField = (event, callback) => {
-    if (event.key === "Enter") return callback(event.target.value);
+    return callback(event.target.value);
   };
 
   const handleNumberField = (event, callback) => {
-    if (event.key === "Enter")
-      return callback(parseInt(event.target.value, 10));
+    return callback(parseInt(event.target.value, 10));
   };
 
   const handleSelectField = (event, callback) => {
@@ -85,12 +84,9 @@ export const Demo = () => {
   };
 
   const handleRatioField = (event, callback) => {
-    if (event.key === "Enter") {
-      if (event.target.name === "1")
-        return callback((prev) => [prev[0], parseInt(event.target.value, 10)]);
-      else
-        return callback((prev) => [parseInt(event.target.value, 10), prev[1]]);
-    }
+    if (event.target.name === "1")
+      return callback((prev) => [prev[0], parseInt(event.target.value, 10)]);
+    else return callback((prev) => [parseInt(event.target.value, 10), prev[1]]);
   };
 
   const handleColorField = (event, callback) => {
@@ -120,8 +116,6 @@ export const Demo = () => {
   const onCopyToClipboard = async () => {
     const code = document.querySelector("code");
     const text = code.innerText;
-
-    console.log(text);
 
     await navigator.clipboard.writeText(text);
   };
@@ -160,9 +154,7 @@ export const Demo = () => {
                   type="number"
                   step="10"
                   min={0}
-                  onKeyDown={(event) =>
-                    handleNumberField(event, setEffectSpeed)
-                  }
+                  onChange={(event) => handleNumberField(event, setEffectSpeed)}
                   defaultValue={effectSpeed}
                 />
               </li>
@@ -180,7 +172,7 @@ export const Demo = () => {
                 <input
                   id="width-value"
                   type="text"
-                  onKeyDown={(event) => handleTextField(event, setWidth)}
+                  onChange={(event) => handleTextField(event, setWidth)}
                   defaultValue={width}
                 />
               </li>
@@ -201,14 +193,14 @@ export const Demo = () => {
                     id="aspect-ratio-w"
                     type="number"
                     name="0"
-                    onKeyDown={(event) => handleRatioField(event, setRatio)}
+                    onChange={(event) => handleRatioField(event, setRatio)}
                     defaultValue={ratio[0]}
                   />
                   <input
                     id="aspect-ratio-h"
                     type="number"
                     name="1"
-                    onKeyDown={(event) => handleRatioField(event, setRatio)}
+                    onChange={(event) => handleRatioField(event, setRatio)}
                     defaultValue={ratio[1]}
                   />
                 </div>
@@ -248,7 +240,7 @@ export const Demo = () => {
                   id="blur-amount"
                   type="number"
                   min={0}
-                  onKeyDown={(event) => handleNumberField(event, setBlurAmount)}
+                  onChange={(event) => handleNumberField(event, setBlurAmount)}
                   defaultValue={blurAmount}
                 />
               </li>
@@ -284,7 +276,7 @@ export const Demo = () => {
                 <input
                   id="navigation-width"
                   type="text"
-                  onKeyDown={(event) => handleTextField(event, setNavWidth)}
+                  onChange={(event) => handleTextField(event, setNavWidth)}
                   defaultValue={navWidth}
                 />
               </li>
@@ -296,7 +288,7 @@ export const Demo = () => {
                   id="navigation-side-margin"
                   type="number"
                   min={0}
-                  onKeyDown={(event) =>
+                  onChange={(event) =>
                     handleNumberField(event, setNavSideMargin)
                   }
                   defaultValue={navSideMargin}
@@ -327,7 +319,7 @@ export const Demo = () => {
                   id="arrow-icon-size"
                   type="number"
                   min={0}
-                  onKeyDown={(event) =>
+                  onChange={(event) =>
                     handleNumberField(event, setArrowIconSize)
                   }
                   defaultValue={arrowIconSize}
@@ -360,7 +352,7 @@ export const Demo = () => {
                 <input
                   id="arrow-size"
                   type="number"
-                  onKeyDown={(event) => handleNumberField(event, setArrowSize)}
+                  onChange={(event) => handleNumberField(event, setArrowSize)}
                   defaultValue={arrowSize}
                 />
               </li>
@@ -369,9 +361,7 @@ export const Demo = () => {
                 <input
                   id="arrow-border-radius"
                   type="number"
-                  onKeyDown={(event) =>
-                    handleNumberField(event, setArrowRadius)
-                  }
+                  onChange={(event) => handleNumberField(event, setArrowRadius)}
                   defaultValue={arrowRadius}
                 />
               </li>
@@ -408,7 +398,7 @@ export const Demo = () => {
                 <input
                   id="dots-size"
                   type="number"
-                  onKeyDown={(event) => handleNumberField(event, setDotSize)}
+                  onChange={(event) => handleNumberField(event, setDotSize)}
                   defaultValue={dotSize}
                 />
               </li>
@@ -417,7 +407,7 @@ export const Demo = () => {
                 <input
                   id="dots-radius"
                   type="number"
-                  onKeyDown={(event) => handleNumberField(event, setDotRadius)}
+                  onChange={(event) => handleNumberField(event, setDotRadius)}
                   defaultValue={dotRadius}
                 />
               </li>
@@ -426,7 +416,7 @@ export const Demo = () => {
                 <input
                   id="dots-spacing"
                   type="number"
-                  onKeyDown={(event) => handleNumberField(event, setDotSpacing)}
+                  onChange={(event) => handleNumberField(event, setDotSpacing)}
                   defaultValue={dotSpacing}
                 />
               </li>
